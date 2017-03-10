@@ -1,0 +1,25 @@
+{
+  "name": "doppel-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --config mywebpack.config.js",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petahcole/capstone-client.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/petahcole/capstone-client/issues"
+  },
+  "homepage": "https://github.com/petahcole/capstone-client#readme",
+  "dependencies": {
+    "webpack": "^2.2.1"
+  }
+}
