@@ -1,12 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
-// var pluginExtractText = require("extract-text-webpack-plugin");
-
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 require('file-loader');
 require('style-loader');
 require('css-loader');
-require("css!./styles/main.css");
+
+// require("css!./styles/main.css");
 
 
 module.exports = {
@@ -20,13 +20,6 @@ module.exports = {
          path: path.resolve(__dirname, 'dist'),
          publicPath: ''
      },
-     plugins: [
-          new webpack.optimize.CommonsChunkPlugin({
-              name: 'vendor',
-              filename: 'vendor.bundle.js'
-          })
-          // new pluginExtractText('./styles/main.css')
-     ],
      module: {
          loaders: [
              {
@@ -36,11 +29,22 @@ module.exports = {
                      presets: ['es2015']
                  }
              },
-              {
-                test: /\.css$/, loader: "style-loader!css-loader"
-              }
+             {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader?sourceMap'
+                })
+            },
          ]
      },
+     plugins: [
+          new webpack.optimize.CommonsChunkPlugin({
+              name: 'vendor',
+              filename: 'vendor.bundle.js'
+          }),
+          new ExtractTextPlugin('./styles/main.css')
+     ],
      resolveLoader: {
        modules: ['node_modules']
      },

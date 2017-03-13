@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./app/styles/main.css"],"names":[],"mappings":";AACA;EACE,sBAAsB;CACvB;;AAED;EACE,wBAAwB;CACzB","file":"./styles/main.css","sourcesContent":["\n.form-header  {\n  background-color: red;\n}\n\n.form-footer  {\n  background-color: green;\n}\n\n\n\n// WEBPACK FOOTER //\n// ./app/styles/main.css"],"sourceRoot":""}
