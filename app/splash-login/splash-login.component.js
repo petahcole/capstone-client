@@ -9,6 +9,13 @@
 
       vm.$onInit = function() {
         console.log('init init init');
+
+        vm.isVisible = false;
+
+      }
+      vm.toggleLogin = function() {
+        console.log('clicked!');
+        vm.isVisible = !vm.isVisible;
       }
       console.log('hello from the login page');
     }

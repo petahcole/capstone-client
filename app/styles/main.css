@@ -1,14 +1,48 @@
 
+main  {
+  margin-left: 5vw;
+  margin-right: 5vw
+}
+
 .form-header  {
-  background-color: red;
+  width: 100%;
+  background-color: #FA8334;
+  text-align: center;
 }
 
 .form-footer  {
-  background-color: green;
+  width: 100%;
+  background-color: #FA8334;
 }
 
 .jumbotron  {
   background-image: url('../img/bokeh.png');
-  height: 20vh;
+  height: 30vh;
   width: 100vw;
+}
+
+.content-box  {
+  height: 40vh;
+  width: 50vw;
+}
+
+.color-box-1  {
+  height: 40vh;
+  background-color: #388697;
+  width: 50vw;
+}
+
+.color-box-2  {
+  height: 40vh;
+  background-color: #271033;
+  width: 50vw;
+}
+
+.form-card  {
+  width: 30vw;
+}
+
+.container  {
+  margin-left: 10vw;
+  margin-right: 10vw;
 }

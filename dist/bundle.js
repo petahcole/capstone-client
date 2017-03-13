@@ -32,6 +32,12 @@ var splashLoginController = function splashLoginController() {
 
   vm.$onInit = function () {
     console.log('init init init');
+
+    vm.isVisible = false;
+  };
+  vm.toggleLogin = function () {
+    console.log('clicked!');
+    vm.isVisible = !vm.isVisible;
   };
   console.log('hello from the login page');
 };
@@ -21166,7 +21172,7 @@ scope.$on('$destroy',function(){disconnect();});}};}})();(function(){"use strict
 /* 12 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron\">\n\n</div>\n<div class=\"\">\n  <md-button href=\"http://google.com\"> Flat link </md-button>\n</div>\n\n\n<md-card class=\"container\" layout=\"column\" layout-align=\"center center\">\n    <md-card-header class=\"form-header\">\n      <md-card-header-text>\n    <div class=\"md-title\">Login</div>\n    <!-- <span class=\"md-subhead\">Sub header</span> -->\n  </md-card-header-text>\n    </md-card-header>\n  <form class=\"\" action=\"index.html\" method=\"post\">\n    <div class=\"\" flex=\"50\">\n      <label for=\"\">Email</label>\n      <input type=\"text\" name=\"\" value=\"\">\n    </div>\n    <div class=\"\" flex=\"50\">\n      <label for=\"\">Password</label>\n      <input type=\"text\" name=\"\" value=\"\">\n    </div>\n  </form>\n  <md-card-footer class=\"form-footer\">\n  </md-card-footer>\n</md-card>\n\n<div class=\"\" flex=\"50\">\n  <p>copy</p>\n</div>\n<div class=\"\" flex=\"50\">\n  <p>color</p>\n</div>\n<div class=\"\" flex=\"50\">\n  <p>color</p>\n</div>\n<div class=\"\" flex=\"50\">\n  <p>copy</p>\n</div>\n";
+module.exports = "<div class=\"jumbotron\">\n\n</div>\n<div class=\"\" layout=\"row\" layout-align=\"center center\">\n  <md-button ng-click=\"$ctrl.toggleLogin()\"> Login </md-button>\n</div>\n\n<div ng-show=\"$ctrl.isVisible\" layout=\"row\" layout-align=\"center center\">\n  <md-card class=\"form-card\" layout=\"column\" layout-align=\"center center\">\n    <md-card-header class=\"form-header\" layout-padding>\n      <md-card-header-text>\n        <div class=\"md-title\">Login</div>\n      </md-card-header-text>\n    </md-card-header>\n    <form class=\"\" action=\"index.html\" method=\"post\" layout-padding>\n      <div class=\"\" flex=\"50\">\n        <label for=\"\">Email</label>\n        <input type=\"email\" name=\"email\" value=\"\" md-autofocus>\n      </div>\n      <div class=\"\" flex=\"50\">\n        <label for=\"\">Password</label>\n        <input type=\"text\" name=\"password\" value=\"\">\n      </div>\n    </form>\n    <md-card-footer class=\"form-footer\" layout-padding>\n    </md-card-footer>\n  </md-card>\n</div>\n\n<div class=\"container\" layout=\"row\" layout-align=\"center center\">\n  <md-card class=\"content-box\" flex=\"50\" layout-padding>\n    <p>Lanyard gabion clipper Shiver me timbers belaying pin capstan bounty crimp spanker pirate.\n      Gabion hearties measured fer yer chains rum walk the plank long boat rigging lookout Cat o'nine tails boom.\n      Nelsons folly lass heave to hogshead lugsail crow's nest spyglass starboard parley hearties.</p>\n  </md-card>\n  <md-card class=\"color-box-1\" flex=\"50\">\n  </md-card>\n</div>\n<div class=\"container\" layout=\"row\" layout-align=\"center center\">\n  <md-card class=\"color-box-2\" flex=\"50\">\n  </md-card>\n  <md-card class=\"content-box\" flex=\"50\" layout-padding>\n    <p>Lanyard gabion clipper Shiver me timbers belaying pin capstan bounty crimp spanker pirate.\n      Gabion hearties measured fer yer chains rum walk the plank long boat rigging lookout Cat o'nine tails boom.\n      Nelsons folly lass heave to hogshead lugsail crow's nest spyglass starboard parley hearties.</p>\n  </md-card>\n</div>\n";
 
 /***/ }),
 /* 13 */
