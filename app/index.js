@@ -9,6 +9,7 @@ import 'angular-animate';
 import angular from 'angular';
 
 require("./styles/main.css");
+require('./img/bokeh.png')
 
 
 import SplashLoginComponent from './splash-login/splash-login.component'

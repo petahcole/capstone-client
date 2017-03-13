@@ -5,6 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 require('file-loader');
 require('style-loader');
 require('css-loader');
+require('url-loader');
 
 // require("css!./styles/main.css");
 
@@ -36,6 +37,10 @@ module.exports = {
                     use: 'css-loader?sourceMap'
                 })
             },
+            {
+                test: /\.(png|jpg)$/,
+                loader: "url-loader?name=/img/[name].[ext]"
+            }
          ]
      },
      plugins: [

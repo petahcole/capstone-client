@@ -6,3 +6,9 @@
 .form-footer  {
   background-color: green;
 }
+
+.jumbotron  {
+  background-image: url('../img/bokeh.png');
+  height: 20vh;
+  width: 100vw;
+}
