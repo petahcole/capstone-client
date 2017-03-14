@@ -7,8 +7,6 @@ require('style-loader');
 require('css-loader');
 require('url-loader');
 
-// require("css!./styles/main.css");
-
 
 module.exports = {
   devtool: 'source-map',
