@@ -4,6 +4,15 @@ main  {
   margin-right: 5vw
 }
 
+header  {
+  height: 5vh;
+  background-color: #271033;
+}
+
+#home-icon  {
+  color: white;
+}
+
 .form-header  {
   width: 100%;
   background-color: #FA8334;
@@ -17,8 +26,16 @@ main  {
 
 .jumbotron  {
   background-image: url('../img/bokeh.png');
-  height: 30vh;
+  height: 40vh;
   width: 100vw;
+  background-size: cover;
+  margin-bottom: 1em;
+}
+
+.jumbo-header {
+  color: white;
+  border: 2px solid white;
+  padding: 2px;
 }
 
 .content-box  {
@@ -45,4 +62,13 @@ main  {
 .container  {
   margin-left: 10vw;
   margin-right: 10vw;
+}
+
+.login  {
+  margin-top: 1em;
+}
+
+#login-btn  {
+  color: white;
+  background-color: #271033;
 }

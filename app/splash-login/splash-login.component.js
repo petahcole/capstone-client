@@ -3,22 +3,27 @@
 
   import template from 'html-loader!./splash-login.template.html'
 
-    const splashLoginController = function()  {
+    const splashLoginController = function(splashLoginService)  {
 
       const vm = this;
 
       vm.$onInit = function() {
-        console.log('init init init');
 
         vm.isVisible = false;
-
       }
+
       vm.toggleLogin = function() {
-        console.log('clicked!');
         vm.isVisible = !vm.isVisible;
       }
-      console.log('hello from the login page');
+
+      vm.submitLogin  = function(e)  {
+        e.preventDefault();
+        splashLoginService.httpLogin(vm.login)
+      }
+
     }
+
+
 
     const SplashLoginComponent = {
       template: template,
