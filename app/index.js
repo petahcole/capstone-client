@@ -11,13 +11,18 @@ require('./img/bokeh.png')
 
 import SplashLoginComponent from './splash-login/splash-login.component'
 import splashLoginService from './splash-login/splash-login.service'
+import AdminSplashComponent from './admin/admin-splash.component'
+import adminUserService from './admin/admin-splash.service'
+
 
 
 angular.module('app', ['ngMaterial', 'ui.router'])
   .component('splashLogin', SplashLoginComponent)
+  .component('adminSplash', AdminSplashComponent)
 
 //services
   .service('splashLoginService', splashLoginService)
+  .service('adminUserService', adminUserService)
 
 //ui-router config
 
@@ -34,6 +39,11 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
           name: 'home',
           url: '/',
           component:  'splashLogin'
+        })
+        .state({
+          name: 'admin',
+          url: '/',
+          component: 'adminSplash'
         })
 
    $urlRouterProvider.otherwise('/')
