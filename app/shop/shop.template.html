@@ -1,0 +1,13 @@
+<h1>this is the shop page</h1>
+
+<input ng-model="SearchText" type="text" name="" value="">
+
+<div ng-repeat="inventory in $ctrl.inventory | filter:SearchText" class="container" layout="row" layout-direction="center center">
+  <h3>{{inventory.name}}</h3>
+  <h4>{{inventory.color}}</h4>
+  <p>{{inventory.inSeason}}</p>
+  <p>{{inventory.outSeason}}</p>
+  <p>{{inventory.soldAs}}</p>
+  <p>{{inventory.price}}</p>
+
+</div>

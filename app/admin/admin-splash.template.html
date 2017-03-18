@@ -1,6 +1,4 @@
-<div class="jumbotron" layout="column" layout-align="center center">
-  <h1 class="jumbo-header" >doppel</h1>
-</div>
+
 <div layout="row" layout-align="center center">
   <md-button id="login-btn" ng-click="$ctrl.toggleForm()"> Create New User </md-button>
   <a ui-sref="wholesaler"> <md-button id="login-btn"> Create New WholeSaler </md-button></a>
@@ -25,8 +23,8 @@
         <input type="text" name="password" ng-model="$ctrl.user.password">
       </div>
       <div class="" flex="50">
-        <label for="">Confirm Password</label>
-        <input type="text" name="confirm password" ng-model="$ctrl.user.confirmPassword">
+        <label for="">Admin</label>
+        <input type="text" name="confirm password" ng-model="$ctrl.user.isAdmin">
       </div>
       <div layout="row" layout-align="center center">
         <!-- <a ui-sref="admin">  -->

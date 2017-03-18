@@ -1,6 +1,4 @@
-<div class="jumbotron" layout="column" layout-align="center center">
-  <h1 class="jumbo-header" >doppel</h1>
-</div>
+
 <div class="" layout="row" layout-align="center center">
   <md-button id="login-btn" ng-click="$ctrl.toggleLogin()"> Login </md-button>
 </div>
@@ -20,10 +18,12 @@
       </div>
       <div class="" flex="50">
         <label for="">Password</label>
-        <input type="text" name="password" ng-model="$ctrl.login.password">
+        <input type="password" name="password" ng-model="$ctrl.login.password">
       </div>
       <div layout="row" layout-align="center center">
-        <a ui-sref="admin"> <md-button ng-disabled="" type="submit" id="submit-btn"> Submit </md-button></a>
+        <!-- <a ui-sref="admin">  -->
+          <md-button ng-disabled="" type="submit" id="submit-btn"> Submit </md-button>
+        <!-- </a> -->
       </div>
     </form>
 

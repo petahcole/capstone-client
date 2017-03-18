@@ -142,7 +142,7 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -153,12 +153,12 @@
 "use strict";
 
 
-__webpack_require__(13);
+__webpack_require__(16);
 module.exports = angular;
 
 /***/ }),
 
-/***/ 13:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17685,7 +17685,7 @@ bindJQuery();publishExternalAPI(angular);angular.module("ngLocale",[],["$provide
 
 /***/ }),
 
-/***/ 18:
+/***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(0);

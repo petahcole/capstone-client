@@ -7,7 +7,7 @@
 
     vm.httpNewUser = function(user) {
       console.log(user);
-        // return $http.post('/user', user)
+        return $http.post('http://localhost:3500/users/new', user)
     }
 
   }

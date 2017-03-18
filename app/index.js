@@ -13,16 +13,24 @@ import SplashLoginComponent from './splash-login/splash-login.component'
 import splashLoginService from './splash-login/splash-login.service'
 import AdminSplashComponent from './admin/admin-splash.component'
 import adminUserService from './admin/admin-splash.service'
+import WholesalerComponent from './wholesaler/wholesaler.component'
+import wholesalerService from './wholesaler/wholesaler.service'
+import ShopComponent from './shop/shop.component'
+import shopService from './shop/shop.service'
 
 
 
 angular.module('app', ['ngMaterial', 'ui.router'])
   .component('splashLogin', SplashLoginComponent)
   .component('adminSplash', AdminSplashComponent)
+  .component('wholesaler', WholesalerComponent)
+  .component('shop', ShopComponent)
 
 //services
   .service('splashLoginService', splashLoginService)
   .service('adminUserService', adminUserService)
+  .service('wholesalerService', wholesalerService)
+  .service('shopService', shopService)
 
 //ui-router config
 
@@ -42,8 +50,18 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
         })
         .state({
           name: 'admin',
-          url: '/',
+          url: '/admin',
           component: 'adminSplash'
+        })
+        .state({
+          name: 'wholesaler',
+          url: '/wholesaler',
+          component: 'wholesaler'
+        })
+        .state({
+          name: 'shop',
+          url: '/shop',
+          component: 'shop'
         })
 
    $urlRouterProvider.otherwise('/')
