@@ -4,6 +4,7 @@ import angular from 'angular';
 import 'angular-material';
 import 'angular-ui-router';
 import 'angular-animate';
+import 'angular-moment'
 
 require("./styles/main.css");
 require('./img/bokeh.png')
@@ -20,7 +21,7 @@ import shopService from './shop/shop.service'
 
 
 
-angular.module('app', ['ngMaterial', 'ui.router'])
+angular.module('app', ['ngMaterial', 'ui.router', 'angularMoment'])
   .component('splashLogin', SplashLoginComponent)
   .component('adminSplash', AdminSplashComponent)
   .component('wholesaler', WholesalerComponent)

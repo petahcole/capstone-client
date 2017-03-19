@@ -72,3 +72,47 @@ header  {
   color: white;
   background-color: #271033;
 }
+
+/*shop page*/
+
+.flower-header  {
+  color: white;
+  width: 100%;
+  background-color: #388697;
+  text-align: center;
+}
+
+.flower-footer  {
+  color: white;
+  width: 100%;
+  background-color: #388697;
+}
+
+.flower-card  {
+  width: 20vw;
+}
+
+.inventory-text {
+  text-transform:capitalize;
+}
+
+.highlighted {
+  background-color: #FFFD77;
+}
+
+#flower-amt {
+  width: 3em;
+}
+
+#add-btn  {
+  color: white;
+  background-color: #271033
+}
+
+.inventory-container  {
+  float: left;
+}
+
+.inventory-header {
+  margin-bottom: 2em;
+}
