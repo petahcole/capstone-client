@@ -117,4 +117,36 @@ header  {
   margin-bottom: 2em;
 }
 
+.shopping-cart  {
+    border: 2px solid black;
+    margin-left: 5vw;
+    height: 100%
+}
+
+.shopping-cart table  {
+  width: 30vw
+}
+
+#subtotal {
+  font-weight: bold;
+  text-align: center
+}
+#total {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+}
+
+th  {
+  text-align: left
+}
+
+table {
+  width: 50vw
+}
+
+#center {
+  text-align: center;
+}
+
 /*# sourceMappingURL=main.css.map*/

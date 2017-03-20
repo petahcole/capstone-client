@@ -13,16 +13,17 @@
       shopService.getInventory()
         .then(inventory =>  {
           vm.inventory = inventory.data.data;
+          console.log(vm.inventory)
           vm.inventory.forEach(item =>  {
-            item.inSeason.forEach(month =>  {
-              if(vm.date == month) {
-                  console.log(vm.date)
-                return item.price = item.price[0]
-
-              } else {
-                console.log('shits broken')
-              }
-            })
+            item.soldAs = item.soldAs[0];
+            for (var i = 0; i < item.inSeason.length; i++) {
+                if(item.inSeason.includes(vm.date)){
+                  item.price = item.price[0];
+                } else {
+                  item.price = item.price[1]
+                }
+                return item.price
+            }
           })
         })
         .catch(err  =>  {
@@ -33,6 +34,10 @@
       vm.add = function(amount, inventory) {
           shopService.addItemToCart(amount, inventory)
           vm.shoppingCart = shopService.shoppingCart
+      }
+
+      vm.confirm = function() {
+        shopService.confirmOrder()
       }
 
 

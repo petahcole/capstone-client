@@ -15032,15 +15032,17 @@ var shopController = function shopController(shopService, moment) {
 
     shopService.getInventory().then(function (inventory) {
       vm.inventory = inventory.data.data;
+      console.log(vm.inventory);
       vm.inventory.forEach(function (item) {
-        item.inSeason.forEach(function (month) {
-          if (vm.date == month) {
-            console.log(vm.date);
-            return item.price = item.price[0];
+        item.soldAs = item.soldAs[0];
+        for (var i = 0; i < item.inSeason.length; i++) {
+          if (item.inSeason.includes(vm.date)) {
+            item.price = item.price[0];
           } else {
-            console.log('shits broken');
+            item.price = item.price[1];
           }
-        });
+          return item.price;
+        }
       });
     }).catch(function (err) {
       console.log(err);
@@ -15050,6 +15052,10 @@ var shopController = function shopController(shopService, moment) {
   vm.add = function (amount, inventory) {
     shopService.addItemToCart(amount, inventory);
     vm.shoppingCart = shopService.shoppingCart;
+  };
+
+  vm.confirm = function () {
+    shopService.confirmOrder();
   };
 };
 
@@ -15078,13 +15084,25 @@ var shopService = function shopService($http) {
     return $http.get('http://localhost:3500/inventory');
   };
 
-  vm.shoppingCart = [];
+  vm.shoppingCart = {
+    cart: [],
+    subtotal: 0.00,
+    total: 0.00
+  };
 
   vm.addItemToCart = function (amount, inventory) {
     vm.item = inventory;
     vm.item.amount = amount;
-    vm.shoppingCart.push(vm.item);
+    vm.shoppingCart.cart.push(vm.item);
     localStorage.setItem('cart', vm.shoppingCart);
+    vm.shoppingCart.subtotal += vm.item.price * vm.item.amount;
+    console.log(vm.shoppingCart.subtotal);
+    vm.shoppingCart.total = +(vm.shoppingCart.subtotal * .08) + vm.shoppingCart.subtotal;
+    console.log(vm.shoppingCart.total);
+  };
+
+  vm.confirmOrder = function () {
+    console.log(vm.shoppingCart);
   };
 };
 
@@ -40782,7 +40800,7 @@ module.exports = "\n<div layout=\"row\" layout-align=\"center center\">\n  <md-b
 /* 131 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n  <div class=\"inventory-header\" layout=\"column\" layout-align=\"center center\">\n    <h1>Make your shopping list!</h1>\n    <label for=\"search\">Filter by Search Term</label>\n    <input ng-model=\"SearchText\" type=\"text\" name=\"search\" value=\"\">\n  </div>\n\n  <!-- <div class=\"inventory-container\" flex=\"60\" ng-repeat=\"inventory in $ctrl.inventory | filter:SearchText\" layout=\"row\" layout-direction=\"center center\">\n    <div ng-class=\"{highlighted: hover}\" ng-mouseenter=\"hover=true\" ng-mouseleave=\"hover=false\">\n      <md-card class=\"flower-card\" layout=\"column\" layout-align=\"center center\">\n        <md-card-header class=\"flower-header\" layout-padding>\n          <md-card-header-text>\n            <div class=\"md-title inventory-text\" ng-model=\"$ctrl.item.name\">{{inventory.name}}</div>\n          </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n          <h4 class=\"inventory-text\" ng-model=\"$ctrl.item.color\">Color: {{inventory.color}}</h4>\n          <p> In Season Months:</p>\n          <p ng-repeat=\"i in inSeason\">{{i}}</p>\n          <p>Out of Season Months:</p>\n          <p> {{inventory.outSeason}}</p>\n          <p>Sold in bunches of:</p>\n          <p> {{inventory.soldAs}}</p>\n          <p ng-model=\"$ctrl.item.price\"> Cost:</p>\n          <p> {{inventory.price}}</p>\n        </md-card-content>\n      <md-card-footer class=\"flower-footer\" layout=\"row\" layout-align=\"center center\" layout-padding>\n        <label for=\"amount\">Amount</label>\n        <input id=\"flower-amt\" type=\"number\" name=\"amount\" ng-model=\"$ctrl.item.amount\">\n        <md-button id=\"add-btn\" ng-click=\"$ctrl.add()\">Add Item</md-button>\n      </md-card-footer>\n    </md-card>\n    </div>\n  </div> -->\n<div layout=\"row\">\n\n\n  <div class=\"inventory-container\" flex=\"70\" layout=\"row\" layout-direction=\"center center\">\n      <table>\n        <tr>\n          <th>Item Name</th>\n          <th>Color</th>\n          <th>Price</th>\n          <th>Sold As</th>\n          <th>Amount</th>\n        </tr>\n        <tr ng-repeat=\"inventory in $ctrl.inventory | filter:SearchText\" ng-class=\"{highlighted: hover}\" ng-mouseenter=\"hover=true\" ng-mouseleave=\"hover=false\">\n          <td class=\"inventory-text\" name=\"name\">{{inventory.name}}</td>\n          <td class=\"inventory-text\" name=\"color\">{{inventory.color}}</td>\n          <td name=\"price\">{{inventory.Price}}</td>\n          <td >{{inventory.soldAs}}</td>\n          <td><input id=\"flower-amt\" type=\"number\" name=\"amount\" ng-model=\"amount\"></td>\n          <td><md-button id=\"add-btn\" ng-click=\"$ctrl.add(amount, inventory)\">Add Item</md-button></td>\n        </tr>\n      </table>\n  </div>\n\n  <div >\n    <p>shopping list</p>\n  </div>\n\n    <table flex=\"30\">\n      <tr>\n        <th>Item</th>\n        <th>Color</th>\n        <th>Price</th>\n        <th>Amount</th>\n      </tr>\n      <tr class=\"\" ng-repeat=\"item in $ctrl.shoppingCart\">\n        <td>{{item.name}}</td>\n        <td>{{item.color}}</td>\n        <td>{{item.price}}</td>\n        <td>{{item.amount}}</td>\n      </tr>\n    </table>\n\n</div>\n\n</div>\n";
+module.exports = "<div class=\"container\">\n\n  <div class=\"inventory-header\" layout=\"column\" layout-align=\"center center\">\n    <h1>Make your shopping list!</h1>\n    <label for=\"search\">Filter by Search Term</label>\n    <input ng-model=\"SearchText\" type=\"text\" name=\"search\" value=\"\">\n  </div>\n\n  <!-- <div class=\"inventory-container\" flex=\"60\" ng-repeat=\"inventory in $ctrl.inventory | filter:SearchText\" layout=\"row\" layout-direction=\"center center\">\n    <div ng-class=\"{highlighted: hover}\" ng-mouseenter=\"hover=true\" ng-mouseleave=\"hover=false\">\n      <md-card class=\"flower-card\" layout=\"column\" layout-align=\"center center\">\n        <md-card-header class=\"flower-header\" layout-padding>\n          <md-card-header-text>\n            <div class=\"md-title inventory-text\" ng-model=\"$ctrl.item.name\">{{inventory.name}}</div>\n          </md-card-header-text>\n        </md-card-header>\n        <md-card-content>\n          <h4 class=\"inventory-text\" ng-model=\"$ctrl.item.color\">Color: {{inventory.color}}</h4>\n          <p> In Season Months:</p>\n          <p ng-repeat=\"i in inSeason\">{{i}}</p>\n          <p>Out of Season Months:</p>\n          <p> {{inventory.outSeason}}</p>\n          <p>Sold in bunches of:</p>\n          <p> {{inventory.soldAs}}</p>\n          <p ng-model=\"$ctrl.item.price\"> Cost:</p>\n          <p> {{inventory.price}}</p>\n        </md-card-content>\n      <md-card-footer class=\"flower-footer\" layout=\"row\" layout-align=\"center center\" layout-padding>\n        <label for=\"amount\">Amount</label>\n        <input id=\"flower-amt\" type=\"number\" name=\"amount\" ng-model=\"$ctrl.item.amount\">\n        <md-button id=\"add-btn\" ng-click=\"$ctrl.add()\">Add Item</md-button>\n      </md-card-footer>\n    </md-card>\n    </div>\n  </div> -->\n<div layout=\"row\">\n\n\n  <div class=\"inventory-container\" layout=\"row\" layout-direction=\"center center\">\n      <table>\n        <tr>\n          <th id=\"item\">Item Name</th>\n          <th>Color</th>\n          <th>Price</th>\n          <th>Sold As</th>\n          <th>Amount</th>\n        </tr>\n        <tr ng-repeat=\"inventory in $ctrl.inventory | filter:SearchText\" ng-class=\"{highlighted: hover}\" ng-mouseenter=\"hover=true\" ng-mouseleave=\"hover=false\">\n          <td class=\"inventory-text\" name=\"name\">{{inventory.name}}</td>\n          <td class=\"inventory-text\" name=\"color\">{{inventory.color}}</td>\n          <td name=\"price\">{{inventory.price | currency}}</td>\n          <td id=\"center\">{{inventory.soldAs}}</td>\n          <td id=\"center\"><input id=\"flower-amt\" type=\"number\" name=\"amount\" ng-model=\"amount\" ></td>\n          <td><md-button id=\"add-btn\" ng-click=\"$ctrl.add(amount, inventory)\">Add Item</md-button></td>\n        </tr>\n      </table>\n  </div>\n\n<div class=\"shopping-cart\" layout=\"column\">\n<div>\n  <table flex=\"30\">\n    <tr>\n      <th>Item</th>\n      <th>Color</th>\n      <th>Price</th>\n      <th>Amount</th>\n    </tr>\n    <tr class=\"\" ng-repeat=\"item in $ctrl.shoppingCart.cart\">\n      <td class=\"inventory-text\">{{item.name}}</td>\n      <td class=\"inventory-text\">{{item.color}}</td>\n      <td>{{item.price | currency}}</td>\n      <td id=\"center\">{{item.amount}}</td>\n    </tr>\n  </table>\n</div>\n    <br>\n    <div class=\"\">\n      <table>\n        <tr>\n          <td id=\"subtotal\">Subtotal</td>\n          <td>{{$ctrl.shoppingCart.subtotal | currency}}</td>\n        </tr>\n        <tr>\n          <td id=\"total\">Total</td>\n          <td>{{$ctrl.shoppingCart.total | currency}}</td>\n        </tr>\n      </table>\n      <md-button id=\"add-btn\" ng-click=\"$ctrl.confirm()\">Confirm</md-button>\n    </div>\n</div>\n</div>\n\n</div>\n";
 
 /***/ }),
 /* 132 */

@@ -36,10 +36,10 @@
 <div layout="row">
 
 
-  <div class="inventory-container" flex="70" layout="row" layout-direction="center center">
+  <div class="inventory-container" layout="row" layout-direction="center center">
       <table>
         <tr>
-          <th>Item Name</th>
+          <th id="item">Item Name</th>
           <th>Color</th>
           <th>Price</th>
           <th>Sold As</th>
@@ -48,33 +48,46 @@
         <tr ng-repeat="inventory in $ctrl.inventory | filter:SearchText" ng-class="{highlighted: hover}" ng-mouseenter="hover=true" ng-mouseleave="hover=false">
           <td class="inventory-text" name="name">{{inventory.name}}</td>
           <td class="inventory-text" name="color">{{inventory.color}}</td>
-          <td name="price">{{inventory.Price}}</td>
-          <td >{{inventory.soldAs}}</td>
-          <td><input id="flower-amt" type="number" name="amount" ng-model="amount"></td>
+          <td name="price">{{inventory.price | currency}}</td>
+          <td id="center">{{inventory.soldAs}}</td>
+          <td id="center"><input id="flower-amt" type="number" name="amount" ng-model="amount" ></td>
           <td><md-button id="add-btn" ng-click="$ctrl.add(amount, inventory)">Add Item</md-button></td>
         </tr>
       </table>
   </div>
 
-  <div >
-    <p>shopping list</p>
-  </div>
-
-    <table flex="30">
-      <tr>
-        <th>Item</th>
-        <th>Color</th>
-        <th>Price</th>
-        <th>Amount</th>
-      </tr>
-      <tr class="" ng-repeat="item in $ctrl.shoppingCart">
-        <td>{{item.name}}</td>
-        <td>{{item.color}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.amount}}</td>
-      </tr>
-    </table>
-
+<div class="shopping-cart" layout="column">
+<div>
+  <table flex="30">
+    <tr>
+      <th>Item</th>
+      <th>Color</th>
+      <th>Price</th>
+      <th>Amount</th>
+    </tr>
+    <tr class="" ng-repeat="item in $ctrl.shoppingCart.cart">
+      <td class="inventory-text">{{item.name}}</td>
+      <td class="inventory-text">{{item.color}}</td>
+      <td>{{item.price | currency}}</td>
+      <td id="center">{{item.amount}}</td>
+    </tr>
+  </table>
+</div>
+    <br>
+    <div class="">
+      <table>
+        <tr>
+          <td id="subtotal">Subtotal</td>
+          <td>{{$ctrl.shoppingCart.subtotal | currency}}</td>
+        </tr>
+        <tr>
+          <td id="total">Total</td>
+          <td>{{$ctrl.shoppingCart.total | currency}}</td>
+        </tr>
+      </table>
+      <md-button id="add-btn" ng-click="$ctrl.confirm()">Confirm</md-button>
+    </div>
+</div>
 </div>
 
 </div>
