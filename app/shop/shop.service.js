@@ -9,10 +9,13 @@
       return $http.get('http://localhost:3500/inventory')
       }
 
-      vm.addItemToCart = function() {
-        vm.shoppingCart = []
-        console.log('added to cart')
-        // vm.shoppingCart.push(item)
+      vm.shoppingCart = []
+
+      vm.addItemToCart = function(amount, inventory) {
+        vm.item = inventory;
+        vm.item.amount = amount;
+        vm.shoppingCart.push(vm.item);
+        localStorage.setItem('cart', vm.shoppingCart)        
       }
 
   }
