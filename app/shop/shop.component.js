@@ -12,8 +12,7 @@
 
       shopService.getInventory()
         .then(inventory =>  {
-          vm.inventory = inventory.data.data;
-          console.log(vm.inventory)
+          vm.inventory = inventory.data.data;          
           vm.inventory.forEach(item =>  {
             item.soldAs = item.soldAs[0];
             for (var i = 0; i < item.inSeason.length; i++) {

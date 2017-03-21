@@ -18,6 +18,8 @@ import WholesalerComponent from './wholesaler/wholesaler.component'
 import wholesalerService from './wholesaler/wholesaler.service'
 import ShopComponent from './shop/shop.component'
 import shopService from './shop/shop.service'
+import OrderComponent from './order/order.component'
+// import shopService from './shop/shop.service'
 
 
 
@@ -26,6 +28,7 @@ angular.module('app', ['ngMaterial', 'ui.router', 'angularMoment'])
   .component('adminSplash', AdminSplashComponent)
   .component('wholesaler', WholesalerComponent)
   .component('shop', ShopComponent)
+  .component('order', OrderComponent)
 
 //services
   .service('splashLoginService', splashLoginService)
@@ -63,6 +66,11 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
           name: 'shop',
           url: '/shop',
           component: 'shop'
+        })
+        .state({
+          name: 'order',
+          url: '/order',
+          component: 'order'
         })
 
    $urlRouterProvider.otherwise('/')

@@ -6,33 +6,6 @@
     <input ng-model="SearchText" type="text" name="search" value="">
   </div>
 
-  <!-- <div class="inventory-container" flex="60" ng-repeat="inventory in $ctrl.inventory | filter:SearchText" layout="row" layout-direction="center center">
-    <div ng-class="{highlighted: hover}" ng-mouseenter="hover=true" ng-mouseleave="hover=false">
-      <md-card class="flower-card" layout="column" layout-align="center center">
-        <md-card-header class="flower-header" layout-padding>
-          <md-card-header-text>
-            <div class="md-title inventory-text" ng-model="$ctrl.item.name">{{inventory.name}}</div>
-          </md-card-header-text>
-        </md-card-header>
-        <md-card-content>
-          <h4 class="inventory-text" ng-model="$ctrl.item.color">Color: {{inventory.color}}</h4>
-          <p> In Season Months:</p>
-          <p ng-repeat="i in inSeason">{{i}}</p>
-          <p>Out of Season Months:</p>
-          <p> {{inventory.outSeason}}</p>
-          <p>Sold in bunches of:</p>
-          <p> {{inventory.soldAs}}</p>
-          <p ng-model="$ctrl.item.price"> Cost:</p>
-          <p> {{inventory.price}}</p>
-        </md-card-content>
-      <md-card-footer class="flower-footer" layout="row" layout-align="center center" layout-padding>
-        <label for="amount">Amount</label>
-        <input id="flower-amt" type="number" name="amount" ng-model="$ctrl.item.amount">
-        <md-button id="add-btn" ng-click="$ctrl.add()">Add Item</md-button>
-      </md-card-footer>
-    </md-card>
-    </div>
-  </div> -->
 <div layout="row">
 
 
@@ -85,7 +58,7 @@
           <td>{{$ctrl.shoppingCart.total | currency}}</td>
         </tr>
       </table>
-      <md-button id="add-btn" ng-click="$ctrl.confirm()">Confirm</md-button>
+    <a ui-sref="order" ><md-button id="add-btn" ng-click="$ctrl.confirm()">Confirm</md-button></a>
     </div>
 </div>
 </div>
