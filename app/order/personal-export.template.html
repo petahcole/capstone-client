@@ -1,0 +1,47 @@
+
+<div layout="column" layout-align="center center">
+<label for="markup">Enter Markup Percentage</label>
+<input type="number" name="markup" ng-model="$ctrl.markup">
+<label for="labor">Enter Total Labor Cost</label>
+<input type="number" name="labor" ng-model="$ctrl.labor">
+<md-button id="add-btn" ng-click="$ctrl.prepPersonal()">Add Markup and Labor</md-button>
+</div>
+
+<div layout="column" layout-align="center center">
+<div class="inventory-container" layout="column" layout-direction="center center">
+  <table>
+    <tr>
+      <th id="item">Item Name</th>
+      <th>Color</th>
+      <th>Price</th>
+      <th>Sold As</th>
+      <th>Amount</th>
+    </tr>
+
+  <tr class="" ng-repeat="item in $ctrl.personalOrder.cart">
+    <td class="inventory-text">{{item.name}}</td>
+    <td class="inventory-text">{{item.color}}</td>
+    <td>{{item.price | currency}}</td>
+    <td>{{item.soldAs}}</td>
+    <td>{{item.amount}}</td>
+  </tr>
+  </table>
+  <div layout="column" layout-align="center center">
+    <table>
+      <tr>
+        <td id="subtotal">Labor</td>
+        <td>{{$ctrl.personalOrder.labor | currency}}</td>
+      </tr>
+      <tr>
+        <td id="subtotal">Subtotal</td>
+        <td>{{$ctrl.personalOrder.subtotal | currency}}</td>
+      </tr>
+      <tr>
+        <td id="total">Total</td>
+        <td>{{$ctrl.personalOrder.total | currency}}</td>
+      </tr>
+    </table>
+    <md-button id="add-btn" ng-click="$ctrl.exportPersonal">Export to Personal</md-button>
+  </div>
+</div>
+</div>

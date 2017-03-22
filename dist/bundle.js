@@ -15023,6 +15023,8 @@ var _orderTemplate2 = _interopRequireDefault(_orderTemplate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import template from 'html-loader!./personal-export.template.html'
+
 var orderController = function orderController(shopService) {
   var vm = this;
 
@@ -15037,6 +15039,18 @@ var orderController = function orderController(shopService) {
 
   vm.exportPersonal = function () {
     console.log('exported to personal');
+  };
+
+  vm.prepWholesale = function () {
+    vm.wholeSaleOrder = vm.currentOrder;
+  };
+
+  vm.prepPersonal = function () {
+    vm.personalOrder = vm.currentOrder;
+    vm.personalOrder.markup = vm.markup;
+    vm.personalOrder.labor = vm.labor;
+    vm.personalOrder.price = vm.personalOrder.price * vm.markup + vm.personalOrder.price;
+    vm.personalOrder.subtotal = vm.personalOrder.subtotal + vm.labor;
   };
 };
 
@@ -41651,7 +41665,7 @@ module.exports = "\n<div layout=\"row\" layout-align=\"center center\">\n  <md-b
 /* 135 */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div layout=\"column\" layout-align=\"center center\">\n<div class=\"inventory-container\" layout=\"column\" layout-direction=\"center center\">\n  <table>\n    <tr>\n      <th id=\"item\">Item Name</th>\n      <th>Color</th>\n      <th>Price</th>\n      <th>Sold As</th>\n      <th>Amount</th>\n    </tr>\n\n  <tr class=\"\" ng-repeat=\"item in $ctrl.currentOrder.cart\">\n    <td class=\"inventory-text\">{{item.name}}</td>\n    <td class=\"inventory-text\">{{item.color}}</td>\n    <td>{{item.price}}</td>\n    <td>{{item.amount}}</td>\n  </tr>\n  </table>\n  <div class=\"\">\n    <table>\n      <tr>\n        <td id=\"subtotal\">Subtotal</td>\n        <td>{{$ctrl.currentOrder.subtotal | currency}}</td>\n      </tr>\n      <tr>\n        <td id=\"total\">Total</td>\n        <td>{{$ctrl.currentOrder.total | currency}}</td>\n      </tr>\n    </table>\n  <!-- <a ui-sref=\"order\" ><md-button id=\"add-btn\" ng-click=\"$ctrl.confirm()\">Confirm</md-button></a> -->\n  </div>\n\n</div>\n<!-- create two view buttons for view wholesale and view personal then put the export buttons on each view -->\n<div layout=\"row\" layout-direction=\"center center\">\n<md-button id=\"add-btn\" ng-click=\"$ctrl.exportWholesale()\">Export to Wholesaler</md-button>\n<md-button id=\"add-btn\" ng-click=\"$ctrl.exportPersonal\">Export to Personal</md-button>\n</div>\n</div>\n";
+module.exports = "\n\n<div layout=\"column\" layout-align=\"center center\">\n<div class=\"inventory-container\" layout=\"column\" layout-direction=\"center center\">\n  <table>\n    <tr>\n      <th id=\"item\">Item Name</th>\n      <th>Color</th>\n      <th>Price</th>\n      <th>Sold As</th>\n      <th>Amount</th>\n    </tr>\n\n  <tr class=\"\" ng-repeat=\"item in $ctrl.currentOrder.cart\">\n    <td class=\"inventory-text\">{{item.name}}</td>\n    <td class=\"inventory-text\">{{item.color}}</td>\n    <td>{{item.soldAs}}</td>\n    <td>{{item.price}}</td>\n    <td>{{item.amount}}</td>\n  </tr>\n  </table>\n  <div class=\"\">\n    <table>\n      <tr>\n        <td id=\"subtotal\">Subtotal</td>\n        <td>{{$ctrl.currentOrder.subtotal | currency}}</td>\n      </tr>\n      <tr>\n        <td id=\"total\">Total</td>\n        <td>{{$ctrl.currentOrder.total | currency}}</td>\n      </tr>\n    </table>\n    <div class=\"\">\n\n    </div>\n  </div>\n\n</div>\n<!-- create two view buttons for view wholesale and view personal then put the export buttons on each view -->\n<div layout=\"row\" layout-direction=\"center center\">\n<md-button id=\"add-btn\" ng-click=\"$ctrl.exportWholesale()\">Export to Wholesaler</md-button>\n\n<a ui-sref=\"personal\"><md-button id=\"add-btn\">Prep Personal Export</md-button></a>\n</div>\n</div>\n";
 
 /***/ }),
 /* 136 */
@@ -41969,15 +41983,16 @@ var _order = __webpack_require__(114);
 
 var _order2 = _interopRequireDefault(_order);
 
+var _personalExport = __webpack_require__(150);
+
+var _personalExport2 = _interopRequireDefault(_personalExport);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 __webpack_require__(126);
 __webpack_require__(127);
 
-// import shopService from './shop/shop.service'
-
-
-_angular2.default.module('app', ['ngMaterial', 'ui.router', 'angularMoment', 'ngSanitize', 'ngCsv']).component('splashLogin', _splashLogin2.default).component('adminSplash', _adminSplash2.default).component('wholesaler', _wholesaler2.default).component('shop', _shop2.default).component('order', _order2.default)
+_angular2.default.module('app', ['ngMaterial', 'ui.router', 'angularMoment', 'ngSanitize', 'ngCsv']).component('splashLogin', _splashLogin2.default).component('adminSplash', _adminSplash2.default).component('wholesaler', _wholesaler2.default).component('shop', _shop2.default).component('order', _order2.default).component('personal', _personalExport2.default)
 
 //services
 .service('splashLoginService', _splashLogin4.default).service('adminUserService', _adminSplash4.default).service('wholesalerService', _wholesaler4.default).service('shopService', _shop4.default)
@@ -42012,10 +42027,71 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
     name: 'order',
     url: '/order',
     component: 'order'
+  }).state({
+    name: 'personal',
+    url: '/personal',
+    component: 'personal'
   });
 
   $urlRouterProvider.otherwise('/');
 }
+
+/***/ }),
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _personalExportTemplate = __webpack_require__(151);
+
+var _personalExportTemplate2 = _interopRequireDefault(_personalExportTemplate);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var personalController = function personalController(shopService) {
+  var vm = this;
+
+  vm.$onInit = function () {
+    vm.personalOrder = shopService.shoppingCart;
+  };
+
+  vm.prepPersonal = function () {
+    vm.personalOrder.markup = vm.markup;
+    vm.personalOrder.labor = vm.labor;
+    vm.personalOrder.cart.forEach(function (item) {
+      item.price = item.price * vm.markup + item.price;
+    });
+    vm.personalOrder.subtotal = vm.personalOrder.subtotal + vm.labor;
+    vm.personalOrder.total = vm.personalOrder.subtotal * .08 + vm.personalOrder.subtotal;
+  };
+};
+
+var PersonalComponent = {
+  template: _personalExportTemplate2.default,
+  controller: personalController
+};
+
+exports.default = PersonalComponent;
+
+/***/ }),
+/* 151 */
+/***/ (function(module, exports) {
+
+module.exports = "\n<div layout=\"column\" layout-align=\"center center\">\n<label for=\"markup\">Enter Markup Percentage</label>\n<input type=\"number\" name=\"markup\" ng-model=\"$ctrl.markup\">\n<label for=\"labor\">Enter Total Labor Cost</label>\n<input type=\"number\" name=\"labor\" ng-model=\"$ctrl.labor\">\n<md-button id=\"add-btn\" ng-click=\"$ctrl.prepPersonal()\">Add Markup and Labor</md-button>\n</div>\n\n<div layout=\"column\" layout-align=\"center center\">\n<div class=\"inventory-container\" layout=\"column\" layout-direction=\"center center\">\n  <table>\n    <tr>\n      <th id=\"item\">Item Name</th>\n      <th>Color</th>\n      <th>Price</th>\n      <th>Sold As</th>\n      <th>Amount</th>\n    </tr>\n\n  <tr class=\"\" ng-repeat=\"item in $ctrl.personalOrder.cart\">\n    <td class=\"inventory-text\">{{item.name}}</td>\n    <td class=\"inventory-text\">{{item.color}}</td>\n    <td>{{item.price | currency}}</td>\n    <td>{{item.soldAs}}</td>\n    <td>{{item.amount}}</td>\n  </tr>\n  </table>\n  <div layout=\"column\" layout-align=\"center center\">\n    <table>\n      <tr>\n        <td id=\"subtotal\">Labor</td>\n        <td>{{$ctrl.personalOrder.labor | currency}}</td>\n      </tr>\n      <tr>\n        <td id=\"subtotal\">Subtotal</td>\n        <td>{{$ctrl.personalOrder.subtotal | currency}}</td>\n      </tr>\n      <tr>\n        <td id=\"total\">Total</td>\n        <td>{{$ctrl.personalOrder.total | currency}}</td>\n      </tr>\n    </table>\n    <md-button id=\"add-btn\" ng-click=\"$ctrl.exportPersonal\">Export to Personal</md-button>\n  </div>\n</div>\n</div>\n";
 
 /***/ })
 ],[140]);

@@ -2,6 +2,7 @@
 
 
   import template from 'html-loader!./order.template.html'
+  // import template from 'html-loader!./personal-export.template.html'
 
   const orderController = function(shopService)  {
     const vm = this;
