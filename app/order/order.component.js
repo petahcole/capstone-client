@@ -8,9 +8,16 @@
 
     vm.$onInit = function() {
       console.log('hello from the order controller');
-      shopService.getOrder()
+      vm.currentOrder = shopService.shoppingCart
     }
 
+    vm.exportWholesaler = function()  {
+      console.log('exported to wholesaler')
+    }
+
+    vm.exportPersonal = function()  {
+      console.log('exported to personal')
+    }
   }
 
   const OrderComponent = {

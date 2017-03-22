@@ -17,21 +17,24 @@
       vm.addItemToCart = function(amount, inventory) {
         vm.item = inventory;
         vm.item.amount = amount;
+        if(amount > 0) {
         vm.shoppingCart.cart.push(vm.item);
         localStorage.setItem('cart', vm.shoppingCart)
         vm.shoppingCart.subtotal += vm.item.price * vm.item.amount
         vm.shoppingCart.total =+ (vm.shoppingCart.subtotal * .08) +  vm.shoppingCart.subtotal;
+        } else {
+        throw new Error({
+          err: 'amount cant be zero'
+        })
+      }
       }
 
       vm.confirmOrder = function()  {
-        vm.currentOrder = vm.shoppingCart
 
       }
 
       vm.getOrder = function()  {
-        console.log(vm.currentOrder)
-        console.log(vm.shoppingCart)
-        return vm.currentOrder
+        vm.currentOrder = vm.shoppingCart
       }
 
   }

@@ -4,10 +4,12 @@ import angular from 'angular';
 import 'angular-material';
 import 'angular-ui-router';
 import 'angular-animate';
-import 'angular-moment'
+import 'angular-moment';
+import 'angular-sanitize'
+import 'ng-csv';
 
 require("./styles/main.css");
-require('./img/bokeh.png')
+require('./img/bokeh.png');
 
 
 import SplashLoginComponent from './splash-login/splash-login.component'
@@ -23,7 +25,7 @@ import OrderComponent from './order/order.component'
 
 
 
-angular.module('app', ['ngMaterial', 'ui.router', 'angularMoment'])
+angular.module('app', ['ngMaterial', 'ui.router', 'angularMoment', 'ngSanitize', 'ngCsv'])
   .component('splashLogin', SplashLoginComponent)
   .component('adminSplash', AdminSplashComponent)
   .component('wholesaler', WholesalerComponent)

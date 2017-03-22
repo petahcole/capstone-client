@@ -1,9 +1,41 @@
-<h1>ORDER CONTROLLER WHOA</h1>
 
-<div class="" ng-repeat="item in $ctrl.currentOrder.cart">
-  <p>{{item.name}}</p>
-  <p>{{item.color}}</p>
-  <p>{{item.price}}</p>
-  <p>{{item.amount}}</p>
 
+<div layout="column" layout-align="center center">
+<div class="inventory-container" layout="column" layout-direction="center center">
+  <table>
+    <tr>
+      <th id="item">Item Name</th>
+      <th>Color</th>
+      <th>Price</th>
+      <th>Sold As</th>
+      <th>Amount</th>
+    </tr>
+
+  <tr class="" ng-repeat="item in $ctrl.currentOrder.cart">
+    <td class="inventory-text">{{item.name}}</td>
+    <td class="inventory-text">{{item.color}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.amount}}</td>
+  </tr>
+  </table>
+  <div class="">
+    <table>
+      <tr>
+        <td id="subtotal">Subtotal</td>
+        <td>{{$ctrl.currentOrder.subtotal | currency}}</td>
+      </tr>
+      <tr>
+        <td id="total">Total</td>
+        <td>{{$ctrl.currentOrder.total | currency}}</td>
+      </tr>
+    </table>
+  <!-- <a ui-sref="order" ><md-button id="add-btn" ng-click="$ctrl.confirm()">Confirm</md-button></a> -->
+  </div>
+
+</div>
+<!-- create two view buttons for view wholesale and view personal then put the export buttons on each view -->
+<div layout="row" layout-direction="center center">
+<md-button id="add-btn" ng-click="$ctrl.exportWholesale()">Export to Wholesaler</md-button>
+<md-button id="add-btn" ng-click="$ctrl.exportPersonal">Export to Personal</md-button>
+</div>
 </div>
