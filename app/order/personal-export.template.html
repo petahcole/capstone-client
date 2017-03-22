@@ -41,7 +41,7 @@
         <td>{{$ctrl.personalOrder.total | currency}}</td>
       </tr>
     </table>
-    <md-button id="add-btn" ng-csv="$ctrl.personalExport" csv-header="$ctrl.getHeaders()">Export Personal</md-button>
+    <md-button id="add-btn" ng-csv="$ctrl.personalExport" csv-header="$ctrl.getHeaders()" filename="personal.csv">Export Personal</md-button>
   </div>
 </div>
 </div>
