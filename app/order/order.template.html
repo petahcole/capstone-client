@@ -14,6 +14,7 @@
   <tr class="" ng-repeat="item in $ctrl.currentOrder.cart">
     <td class="inventory-text">{{item.name}}</td>
     <td class="inventory-text">{{item.color}}</td>
+    <td>{{item.soldAs}}</td>
     <td>{{item.price}}</td>
     <td>{{item.amount}}</td>
   </tr>
@@ -29,7 +30,13 @@
         <td>{{$ctrl.currentOrder.total | currency}}</td>
       </tr>
     </table>
-  <!-- <a ui-sref="order" ><md-button id="add-btn" ng-click="$ctrl.confirm()">Confirm</md-button></a> -->
+    <div class="">
+      <md-button id="add-btn" ng-click="$ctrl.prepPersonal()">Prep Personal Export</md-button>
+      <label for="markup" ng-model="$ctrl.markup">Enter Markup Percentage</label>
+      <input type="number" name="markup" value="">
+      <label for="labor" ng-model="labor">Enter Total Labor Cost</label>
+      <input type="number" name="labor" value="">
+    </div>
   </div>
 
 </div>

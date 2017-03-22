@@ -18,6 +18,19 @@
     vm.exportPersonal = function()  {
       console.log('exported to personal')
     }
+
+    vm.prepWholesale = function() {
+      vm.wholeSaleOrder = vm.currentOrder
+    }
+
+    vm.prepPersonal = function()  {
+      vm.personalOrder = vm.currentOrder;
+      vm.personalOrder.markup = vm.markup
+      vm.personalOrder.labor = vm.labor
+      vm.personalOrder.price = (vm.personalOrder.price * vm.markup) + vm.personalOrder.price;
+      vm.personalOrder.subtotal = vm.personalOrder.subtotal + vm.labor
+
+    }
   }
 
   const OrderComponent = {
