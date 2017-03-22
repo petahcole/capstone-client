@@ -22,23 +22,16 @@
   <div class="">
     <table>
       <tr>
-        <td id="subtotal">Subtotal</td>
+        <td id="subtotal">Total</td>
         <td>{{$ctrl.currentOrder.subtotal | currency}}</td>
       </tr>
-      <tr>
-        <td id="total">Total</td>
-        <td>{{$ctrl.currentOrder.total | currency}}</td>
-      </tr>
     </table>
-    <div class="">
-
-    </div>
   </div>
 
 </div>
-<!-- create two view buttons for view wholesale and view personal then put the export buttons on each view -->
+
 <div layout="row" layout-direction="center center">
-<md-button id="add-btn" ng-click="$ctrl.exportWholesale()">Export to Wholesaler</md-button>
+<md-button id="add-btn" ng-csv="$ctrl.wholesaleOrder" csv-header="$ctrl.getHeaders()" filename="test.csv" ng-click="$ctrl.exportWholesale()">Export to Wholesaler</md-button>
 
 <a ui-sref="personal"><md-button id="add-btn">Prep Personal Export</md-button></a>
 </div>

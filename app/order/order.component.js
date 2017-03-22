@@ -10,6 +10,20 @@
     vm.$onInit = function() {
       console.log('hello from the order controller');
       vm.currentOrder = shopService.shoppingCart
+      console.log(vm.currentOrder.cart)
+      vm.wholesaleOrder = []
+      vm.currentOrder.cart.forEach(item =>  {
+        vm.wholesaleOrder.push({
+          name: item.name,
+          color: item.color,
+          soldAs: item.soldAs,
+          price: item.price,
+          amount: item.amount
+        })
+
+
+      })
+      console.log(vm.wholesaleOrder)
     }
 
     vm.exportWholesaler = function()  {
@@ -20,18 +34,11 @@
       console.log('exported to personal')
     }
 
-    vm.prepWholesale = function() {
-      vm.wholeSaleOrder = vm.currentOrder
+    vm.getHeaders = function()  {
+      return ['Item', 'Color', 'Sold As', 'Price', 'Amount']
     }
 
-    vm.prepPersonal = function()  {
-      vm.personalOrder = vm.currentOrder;
-      vm.personalOrder.markup = vm.markup
-      vm.personalOrder.labor = vm.labor
-      vm.personalOrder.price = (vm.personalOrder.price * vm.markup) + vm.personalOrder.price;
-      vm.personalOrder.subtotal = vm.personalOrder.subtotal + vm.labor
 
-    }
   }
 
   const OrderComponent = {

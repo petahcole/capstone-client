@@ -10,7 +10,7 @@
       vm.personalOrder = shopService.shoppingCart
     }
 
-    vm.prepPersonal = function()  {      
+    vm.prepPersonal = function()  {
       vm.personalOrder.markup = vm.markup
       vm.personalOrder.labor = vm.labor
       vm.personalOrder.cart.forEach(item  =>  {
@@ -19,6 +19,24 @@
       vm.personalOrder.subtotal = vm.personalOrder.subtotal + vm.labor
       vm.personalOrder.total = (vm.personalOrder.subtotal * .08) + vm.personalOrder.subtotal
 
+      vm.personalExport = [];
+      vm.personalOrder.cart.forEach(item  =>  {
+        vm.personalExport.push({
+          name: item.name,
+          color: item.color,
+          soldAs: item.soldAs,
+          price: item.price,
+          amount: item.amount,
+          markup: vm.personalOrder.markup,
+          labor: vm.personalOrder.labor,
+          subtotal: vm.personalOrder.subtotal,
+          total: vm.personalOrder.total
+        })
+      })
+    }
+
+    vm.getHeaders = function()  {
+      return ['Item', 'Color', 'Sold As', 'Price', 'Amount', 'Subtotal', 'Total']
     }
   }
 
