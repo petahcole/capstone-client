@@ -10,6 +10,7 @@ import 'ng-csv';
 
 require("./styles/main.css");
 require('./img/bokeh.png');
+require('./img/Icon.png');
 
 
 import SplashLoginComponent from './splash-login/splash-login.component'

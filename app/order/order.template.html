@@ -6,8 +6,8 @@
     <tr>
       <th id="item">Item Name</th>
       <th>Color</th>
-      <th>Price</th>
       <th>Sold As</th>
+      <th>Price</th>
       <th>Amount</th>
     </tr>
 
@@ -15,7 +15,7 @@
     <td class="inventory-text">{{item.name}}</td>
     <td class="inventory-text">{{item.color}}</td>
     <td>{{item.soldAs}}</td>
-    <td>{{item.price}}</td>
+    <td>{{item.price | currency}}</td>
     <td>{{item.amount}}</td>
   </tr>
   </table>
