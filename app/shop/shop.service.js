@@ -5,7 +5,7 @@
 
     const vm = this;
       vm.getInventory = function()  {
-      return $http.get('http://localhost:3500/inventory')
+      return $http.get('http://ec2-52-39-174-242.us-west-2.compute.amazonaws.com/inventory')
       }
 
       vm.shoppingCart = {

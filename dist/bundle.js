@@ -15000,7 +15000,7 @@ var adminUserService = function adminUserService($http) {
 
   vm.httpNewUser = function (user) {
     console.log(user);
-    return $http.post('http://localhost:3500/users/new', user);
+    return $http.post('http://ec2-52-39-174-242.us-west-2.compute.amazonaws.com/users/new', user);
   };
 };
 
@@ -15199,7 +15199,7 @@ var shopService = function shopService($http) {
 
   var vm = this;
   vm.getInventory = function () {
-    return $http.get('http://localhost:3500/inventory');
+    return $http.get('http://ec2-52-39-174-242.us-west-2.compute.amazonaws.com/inventory');
   };
 
   vm.shoppingCart = {
@@ -15290,7 +15290,7 @@ var splashLoginService = function splashLoginService($http, $state) {
   var vm = this;
 
   vm.httpLogin = function (login) {
-    return $http.post('http://localhost:3500/users/login', login).then(function (result) {
+    return $http.post('http://ec2-52-39-174-242.us-west-2.compute.amazonaws.com/users/login', login).then(function (result) {
       localStorage.setItem('token', result.data.token);
       var payload = localStorage.getItem('token').split('.')[1].replace('-', '+').replace('_', '/');
       var user = JSON.parse(atob(payload));

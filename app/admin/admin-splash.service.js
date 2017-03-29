@@ -7,7 +7,7 @@
 
     vm.httpNewUser = function(user) {
       console.log(user);
-        return $http.post('http://localhost:3500/users/new', user)
+        return $http.post('http://ec2-52-39-174-242.us-west-2.compute.amazonaws.com/users/new', user)
     }
 
   }

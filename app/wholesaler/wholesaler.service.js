@@ -5,7 +5,7 @@
 
     const vm = this;
 
-    
+
 
   }
 
